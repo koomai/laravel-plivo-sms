@@ -3,7 +3,7 @@
 namespace Koomai\Plivo;
 
 use Illuminate\Support\ServiceProvider;
-use Plivo;
+use Koomai\Plivo\Plivo;
 
 class PlivoServiceProvider extends ServiceProvider
 {
@@ -12,7 +12,7 @@ class PlivoServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    // protected $defer = true;
 
     /**
      * Bootstrap any application services.
@@ -36,8 +36,8 @@ class PlivoServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(Plivo::class, function($app) {
-            $config = $app['config']->get('plivo');
 
+            $config = $app['config']->get('plivo');
             if(! $config) {
                 throw new \RuntimeException('Missing Plivo configuration.');
             }

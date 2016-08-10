@@ -12,7 +12,7 @@ class Plivo extends PlivoRestApi
 
     protected $from;
 
-    public function __construct($config)
+    public function __construct(array $config)
     {
         $this->auth_id = $config['auth_id'];
         $this->auth_token = $config['auth_token'];
