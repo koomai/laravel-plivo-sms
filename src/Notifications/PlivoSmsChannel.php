@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Plivo\Notifications;
+namespace Koomai\Plivo\Notifications;
 
 use Illuminate\Notifications\Notification;
 use Koomai\Plivo\Plivo;
@@ -11,7 +11,7 @@ class PlivoSmsChannel
     /**
      * The Plivo instance.
      *
-     * @var \App\Plivo\Plivo;
+     * @var \Koomai\Plivo\Plivo;
      */
     protected $plivo;
 
@@ -25,7 +25,7 @@ class PlivoSmsChannel
     /**
      * Create a new Plivo channel instance.
      *
-     * @param  \App\Plivo\Plivo  $plivo
+     * @param  \Koomai\Plivo\Plivo  $plivo
      * @return void
      */
     public function __construct(Plivo $plivo)
