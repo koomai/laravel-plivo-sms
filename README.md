@@ -5,13 +5,13 @@
 This is pretty much a port of Laravel's default [SMS driver](https://laravel.com/docs/master/notifications#sms-notifications).
 
 ## Getting Started  
-1. Install with composer - `composer require koomai/laravel-plivo-channel`  
+1. Install with composer - `composer require koomai/laravel-plivo-sms`  
 
 2. Add `Koomai/Plivo/PlivoServiceProvider::class` to `config/app.php`
 
 3. Publish the config file `php artisan vendor:publish`
 
-4. Go to `config/plivo.php` and add your Plivo credentials plus the number you're sending from.
+4. Go to `config/plivo.php` and add your Plivo credentials plus the number you're sending from. *Hint:* Use the `.env` file.
 
 ## Usage
 
