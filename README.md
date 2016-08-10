@@ -38,6 +38,7 @@ public function via($notifiable)
 public function toPlivo($notifiable)
 {
     return (new PlivoMessage)
-                ->content('This is a test SMS via Plivo using Laravel Notifications!');
+	                ->content('This is a test SMS via Plivo using Laravel Notifications!');
+	                // ->from('61455222900'); Chain this method to override default 'from' number
 }
 ```
