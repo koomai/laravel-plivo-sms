@@ -30,7 +30,7 @@ public function via($notifiable)
 }
 
 /**
- * Get the mail representation of the notification.
+ * Get the SMS representation of the notification.
  *
  * @param  mixed  $notifiable
  * @return PlivoMessage
