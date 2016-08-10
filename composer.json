@@ -1,0 +1,22 @@
+{
+    "name": "koomai/laravel-plivo-sms",
+    "description": "Plivo SMS driver for Laravel Notifications",
+    "keywords": ["laravel", "plivo", "sms", "notifications"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sid",
+            "homepage": "http://twitter.com/koomai"
+        }
+    ],
+    "require": {
+        "plivo/plivo-php": "^1.1",
+        "laravel/laravel": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Koomai\\Plivo\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
