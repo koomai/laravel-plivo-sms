@@ -25,7 +25,8 @@ class PlivoSmsChannel
     /**
      * Create a new Plivo channel instance.
      *
-     * @param  \Koomai\Plivo\Plivo  $plivo
+     * @param \Koomai\Plivo\Plivo $plivo
+     *
      * @return void
      */
     public function __construct(Plivo $plivo)
@@ -37,13 +38,14 @@ class PlivoSmsChannel
     /**
      * Send the given notification.
      *
-     * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param mixed                                  $notifiable
+     * @param \Illuminate\Notifications\Notification $notification
+     *
      * @return void
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $to = $notifiable->routeNotificationFor('plivo')) {
+        if (!$to = $notifiable->routeNotificationFor('plivo')) {
             return;
         }
 
@@ -54,8 +56,8 @@ class PlivoSmsChannel
         }
 
         $this->plivo->send_message([
-            'src' => $message->from ?: $this->from,
-            'dst' => $to,
+            'src'  => $message->from ?: $this->from,
+            'dst'  => $to,
             'text' => trim($message->content),
         ]);
     }

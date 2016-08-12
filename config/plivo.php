@@ -24,6 +24,6 @@ return [
     |
     */
 
-    'from_number' => env('PLIVO_FROM_NUMBER', '')
+    'from_number' => env('PLIVO_FROM_NUMBER', ''),
 
 ];

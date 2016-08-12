@@ -3,12 +3,11 @@
 namespace Koomai\Plivo;
 
 use Illuminate\Support\ServiceProvider;
-use Koomai\Plivo\Plivo;
 
 class PlivoServiceProvider extends ServiceProvider
 {
     /**
-     * Defer loading of provider
+     * Defer loading of provider.
      *
      * @var bool
      */
@@ -21,11 +20,11 @@ class PlivoServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       $dist = __DIR__.'/../config/plivo.php';
-       $this->publishes([
+        $dist = __DIR__.'/../config/plivo.php';
+        $this->publishes([
            $dist => config_path('plivo.php'),
        ]);
-       $this->mergeConfigFrom($dist, 'plivo');
+        $this->mergeConfigFrom($dist, 'plivo');
     }
 
     /**
@@ -35,10 +34,9 @@ class PlivoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Plivo::class, function($app) {
-
+        $this->app->singleton(Plivo::class, function ($app) {
             $config = $app['config']->get('plivo');
-            if(! $config) {
+            if (!$config) {
                 throw new \RuntimeException('Missing Plivo configuration.');
             }
 
