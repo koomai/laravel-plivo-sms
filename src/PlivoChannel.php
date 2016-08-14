@@ -14,7 +14,7 @@ class PlivoChannel
      *
      * @var \NotificationChannels\Plivo\Plivo;
      */
-    protected $twilio;
+    protected $plivo;
 
     /**
      * The phone number notifications should be sent from.
