@@ -5,7 +5,6 @@ namespace NotificationChannels\Plivo;
 use NotificationChannels\Plivo\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Plivo\Events\MessageWasSent;
 use NotificationChannels\Plivo\Events\SendingMessage;
-use NotificationChannels\Plivo\Plivo;
 use Illuminate\Notifications\Notification;
 
 class PlivoChannel
@@ -25,7 +24,7 @@ class PlivoChannel
     protected $from;
 
     /**
-     * Create a new Plivo channel instance
+     * Create a new Plivo channel instance.
      *
      * @return  void
      */

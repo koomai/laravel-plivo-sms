@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Plivo\Test;
 
-use PHPUnit_Framework_TestCase;
 use NotificationChannels\Plivo\PlivoMessage;
 
 class PlivoMessageTest extends \PHPUnit_Framework_TestCase
@@ -30,12 +29,11 @@ class PlivoMessageTest extends \PHPUnit_Framework_TestCase
         $this->message->content('myMessage');
         $this->assertEquals('myMessage', $this->message->content);
     }
+
     /** @test */
     public function it_can_set_the_from_number()
     {
         $this->message->from('1234567890');
         $this->assertEquals('1234567890', $this->message->from);
     }
-
-
 }
