@@ -1,11 +1,11 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace\Exceptions;
+namespace NotificationChannels\Plivo\Exceptions;
 
 class CouldNotSendNotification extends \Exception
 {
     public static function serviceRespondedWithAnError($response)
     {
-        return new static("Descriptive error message.");
+        return new static("Notification was not sent. Plivo responded with `{$response['status']}: {$response['response']['error']}`");
     }
 }

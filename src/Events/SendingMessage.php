@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace\Events;
+namespace NotificationChannels\Plivo\Events;
 
 use Illuminate\Notifications\Notification;
 

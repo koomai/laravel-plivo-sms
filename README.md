@@ -1,24 +1,11 @@
-Use this repo as a skeleton for your new channel, once you're done please submit a Pull Request on [this repo](https://github.com/laravel-notification-channels/new-channels) with all the files.
+# Plivo notifications channel for Laravel 5.3
 
-Here's the latest documentation on Laravel 5.3 Notifications System: 
-
-https://laravel.com/docs/master/notifications
-
-# A Boilerplate repo for contributions
-
-This package makes it easy to send notifications using [:service_name](link to service) with Laravel 5.3.
-
-**Note:** Replace ```:channel_namespace``` ```:service_name``` ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [composer.json](composer.json) and other files, then delete this line.
-**Tip:** Use "Find in Path/Files" in your code editor to find these keywords within the package directory and replace all occurences with your specified term.
-
-This is where your description should go. Add a little code example so build can understand real quick how the package can be used. Try and limit it to a paragraph or two.
-
-
+This package makes it easy to send SMS notifications using [Plivo][https://plivo.com] with Laravel 5.3.
 
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the :service_name service](#setting-up-the-:service_name-service)
+	- [Setting up the Plivo service](#setting-up-the-Plivo-service)
 - [Usage](#usage)
 	- [Available Message methods](#available-message-methods)
 - [Changelog](#changelog)
@@ -31,19 +18,65 @@ This is where your description should go. Add a little code example so build can
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install this package via composer:
+`composer require laravel-notification-channels/plivo`
 
-### Setting up the :service_name service
+Add the service provider to `config/app.php`:
+```
+// config/app.php
+'providers' => [
+    ...
+    NotificationChannels\Plivo\PlivoServiceProvider::class,
+],
+```
 
-Optionally include a few steps how users can set up the service.
+### Setting up your Plivo service
+Log in to your [Plivo dashboard](https://manage.plivo.com/dashboard/) and grab your Auth Id, Auth Token and the phone number you're sending from. Add them to `config/services.php`.  
+```
+// config/services.php
+...
+'plivo' => [
+    'auth_id' => env('PLIVO_AUTH_ID'),
+    'auth_token' => env('PLIVO_AUTH_TOKEN'),
+    // Country code, area code and number without symbols or spaces
+    'from_number' => env('PLIVO_FROM_NUMBER'),
+],
+```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+Follow Laravel's documentation to add the channel your Notification class:
+```
+use Illuminate\Notifications\Notification;
+use NotificationChannels\Plivo\PlivoChannel;
+use NotificationChannels\Plivo\PlivoMessage;
+
+public function via($notifiable)
+{
+    return [Plivo::class];
+}
+
+public function toPlivo($notifiable)
+{
+    return (new PlivoMessage)
+                    ->content('This is a test SMS via Plivo using Laravel Notifications!');
+}
+```  
+
+Add a `routeNotificationForPlivo` method to your Notifiable model to return the phone number:  
+
+```
+public function routeNotificationForPlivo()
+{
+    // Country code, area code and number without symbols or spaces
+    return preg_replace('/\D+/', '', $this->phone_number);
+}
+```    
 
 ### Available methods
 
-A list of all available options
+* `content()` - (string), SMS notification body
+* `from()` - (integer) Override default from number
 
 ## Changelog
 
@@ -57,7 +90,7 @@ $ composer test
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please email sid@koomai.net instead of using the issue tracker.
 
 ## Contributing
 
@@ -65,7 +98,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Sid K](https://github.com/koomai)
 - [All Contributors](../../contributors)
 
 ## License
