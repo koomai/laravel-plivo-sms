@@ -6,7 +6,6 @@ use Plivo\RestAPI as PlivoRestApi;
 
 class Plivo extends PlivoRestApi
 {
-
     /**
      * @var string
      */
@@ -23,7 +22,7 @@ class Plivo extends PlivoRestApi
     protected $from;
 
     /**
-     * Create a new Plivo RestAPI instance
+     * Create a new Plivo RestAPI instance.
      *
      * @param array $config
      * @return void
@@ -38,7 +37,7 @@ class Plivo extends PlivoRestApi
     }
 
     /**
-     * Number SMS is being sent from
+     * Number SMS is being sent from.
      *
      * @return string
      */
@@ -46,5 +45,4 @@ class Plivo extends PlivoRestApi
     {
         return $this->from;
     }
-
 }
